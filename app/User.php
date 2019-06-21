@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use App\Notifications\VerifyApiEmail;
+use App\Notifications\PasswordResetNotification;
 
 class User extends Authenticatable
 {
@@ -44,4 +45,8 @@ class User extends Authenticatable
         $this->notify(new VerifyApiEmail); // my notification
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
 }
