@@ -1,0 +1,5 @@
+composer require laravel/passport
+set default schema
+setup email and database
+php artisan migrate
+php artisan passport:install
