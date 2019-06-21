@@ -17,6 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('email/{email}/verify/{id}', 'Api\Auth\VerificationApiController@verify')->name('verificationapi.verify');
+Route::get('email/resend', 'Api\Auth\VerificationApiController@resend')->name('verificationapi.resend');
+
 Route::post('login', 'Api\Auth\UserController@login');
 Route::post('register', 'Api\Auth\UserController@register');
 Route::group(['middleware' => 'auth:api'], function(){

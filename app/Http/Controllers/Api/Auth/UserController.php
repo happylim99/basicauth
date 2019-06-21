@@ -49,8 +49,8 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-        $success['name'] =  $user->name;
+        $user->sendApiEmailVerificationNotification();
+        $success['message'] = 'Please confirm yourself by clicking on verify user button sent to you on your email';
         return response()->json(['success'=>$success], $this-> successStatus);
     }
 
